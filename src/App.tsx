@@ -16,7 +16,6 @@ function App() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
   const getData  = () => httpRequest.get(routePath.source).then(response => {
-    console.log("data",response.data);
     setList(response.data);
     getDuplicate(response.data);
     }
@@ -42,8 +41,7 @@ function App() {
           return newObj;
         }
         return item;
-      })
-      console.log("CheckData",checkData);
+      });
       sortData(checkData);
   }
 
@@ -52,7 +50,6 @@ function App() {
     sortedData = [...value].sort((a, b) => {
       return b.Year.localeCompare(a.Year);
     });
-    console.log("sorted", sortedData);
     setVal(sortedData);
   }
 
@@ -74,17 +71,15 @@ function App() {
   const searchData = (value:any) => {
     setSearch(value);
     if(searchVal === "" || searchVal === undefined){
-      debugger;
+      
       let arr = listData.filter((item: any) =>
       item?.Title.toLowerCase().includes(value));
-      console.log('searchData', arr);
       setVal(arr);
     }
     else if(searchVal != value){
-      debugger;
+      
       let arr = listData.filter((item: any) =>
       item?.Title.toLowerCase().includes(value));
-      console.log('searchData', arr);
       setVal(arr);
     }
     else{
